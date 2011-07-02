@@ -21,6 +21,7 @@ which is located at <http://www.fuelwatch.wa.gov.au>.
 import httplib2
 import xml.etree.ElementTree as etree
 from urllib.parse import urlencode
+import datetime as dt
 
 __author__ = 'Adam Gibson'
 
@@ -422,13 +423,61 @@ def parse(datastring):
     rss = etree.fromstring(datastring)
     results = []
     for channel in rss:
-        print("+", channel)
+        print("+", channel) #for debugging
         for tag in channel:
-            print("++", tag)
+            print("++", tag) #for debugging
             if tag.tag == "item":
                 item = {}
                 for subtag in tag:
-                    print(subtag.tag, ": ", subtag.text)
-                    item[subtag.tag] = subtag.text
-                results.append(item)
+                    k, v = preprocess(subtag.tag, subtag.text) #preprocess tag and value before adding to item.
+                    #item[subtag.tag] = subtag.text
+                    item[k] = v
+                    #print(subtag.tag, ": ", subtag.text) #for debugging
+                    print(k, ": ", v)
+                item_p = postprocess(item)
+                results.append(item_p)
     return results
+
+
+def preprocess(tag, value):
+    """ A general inline function to pre-process tag and value before it is added to a dict.
+    """
+    if tag == "price":
+        #convert price to float.
+        output_tag = tag
+        output_value = float(value)
+    elif tag == "date":
+        #convert APIv2 output to a datetime module date.
+        output_tag = tag
+        output_value = dt.date(int(value[0:4]),int(value[5:7]),int(value[8:10]))
+    elif tag == "datePosted":
+        #convert APIv1 output to a datetime module date, save tag as 'date'.
+        output_tag = "date"
+        output_value = dt.date(int(value[0:4]),int(value[5:7]),int(value[8:10]))
+    else:
+        output_tag = tag
+        output_value = value
+    return output_tag, output_value
+
+def postprocess(dict):
+    """ A general function to post-process a dict before it is added to the results list.
+    """
+    # Condition added to split
+    if "Address:" not in dict["description"]:
+        dict['price'] = float(dict["description"].split(":")[0])
+        dict['trading-name'] = dict["description"].split(":")[1].split("-")[0].strip()
+        addr_loc = dict["description"].split(":")[1].split("-")[1]
+        for s in suburbs:
+            if addr_loc.endswith(s.upper()):
+                #TODO (BUG) - 'address' and 'location' keys are not populated when suburb is 'O'Conner' and
+                #'description' is "140.9: Caltex Woolworths O'Connor - Cnr Stock Rd & Forsythe St O'CONNOR"
+                dict['address'] = addr_loc[0:len(addr_loc)-len(s)].strip()
+                dict['location'] = s.upper()
+                print("break")
+                break
+        #debug
+        #print('$'*40)
+        #for i in ['price','trading-name','location','address']:
+        #    print(i, ": ", dict[i])
+    return dict
+
