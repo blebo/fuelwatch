@@ -469,7 +469,7 @@ def postprocess(dict):
         addr_loc = dict["description"].split(":")[1].split("-")[1]
         for s in suburbs:
             if addr_loc.endswith(s.upper()):
-                #TODO (BUG) - 'address' and 'location' keys are not populated when suburb is 'O'Conner' and
+                #TODO (BUG) ISSUE #8- 'address' and 'location' keys are not populated when suburb is 'O'Conner' and
                 #'description' is "140.9: Caltex Woolworths O'Connor - Cnr Stock Rd & Forsythe St O'CONNOR"
                 dict['address'] = addr_loc[0:len(addr_loc)-len(s)].strip()
                 dict['location'] = s.upper()
