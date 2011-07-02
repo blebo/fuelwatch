@@ -28,14 +28,14 @@ results2 = fw.parse(data2)
 print('='*40)
 
 opts3 = {'Product': 1, 'Suburb': "O'Connor"}
-url3 = fw.generate_url(2, opts3)
+url3 = fw.generate_url(opts3)
 data3 = fw.getdata(url3)
 results3 = fw.parse(data3)
 
 print('='*40)
 
 opts4 = {'Product': 1, 'Suburb': "O'Connor"}
-url4 = fw.generate_url(1, opts4)
+url4 = fw.generate_url(opts4, 1)
 data4 = fw.getdata(url4)
 results4 = fw.parse(data4)
 

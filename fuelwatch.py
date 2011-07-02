@@ -395,7 +395,9 @@ def generate_options(product, location, location_type='suburb', day='today', sur
     #todo
     pass
 
-def generate_url(api, optionsdict):
+def generate_url(optionsdict, api=2):
+    """ Generate a URL to access FuelWatch via API version 1 or 2 (default), based on the options dict.
+    """
     options = urlencode(optionsdict)
     if api == 1:
         url = base_url_v1 + options
@@ -406,14 +408,17 @@ def generate_url(api, optionsdict):
     return url
 
 def getdata(url):
+    """ Return a us-ascii text string from a given URL.
+    """
     h = httplib2.Http('.cache')
     response, content = h.request(url)
+    #todo - Catch Exceptions (i.e. if not internet connection).
     #decode byte-array to string, us-ascii selected as mime type text/xml
     datastring = content.decode("us-ascii")
     return datastring
 
 def parse(datastring):
-    """Parse XML string and return a list that contains a dict of attributes for each servo.
+    """ Parse XML string and return a list that contains a dict of attributes for each servo.
     """
     rss = etree.fromstring(datastring)
     results = []
