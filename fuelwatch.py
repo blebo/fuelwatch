@@ -104,6 +104,7 @@ brand = {
     8: "Kleenheat",
     9: "Kwikfuel",
     10: "Liberty",
+    11: "Mobil",
     13: "Peak",
     14: "Shell",
     15: "Independent",
@@ -112,7 +113,15 @@ brand = {
     20: "Coles Express",
     21: "Black & White",
     23: "United",
-    24: "Eagle"
+    24: "Eagle",
+    25: "FastFuel 24/7",
+    26: "Puma",
+    27: "Vibe",
+    29: "7-Eleven",
+    30: "Metro Petroleum",
+    31: "WA Fuels",
+    32: "Costco",
+    33: "Mogas",
 }
 
 suburbs = [
