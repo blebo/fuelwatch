@@ -22,11 +22,6 @@ results = fw.parse(data)
 
 print('='*40)
 
-data2 = fw.getdata("http://www.fuelwatch.wa.gov.au/fuelWatchRSS.cfm?Product=1&Suburb=O'Connor")
-results2 = fw.parse(data2)
-
-print('='*40)
-
 opts3 = {'Product': 1, 'Suburb': "O'Connor"}
 url3 = fw.generate_url(opts3)
 data3 = fw.getdata(url3)
@@ -35,25 +30,11 @@ results3 = fw.parse(data3)
 
 print('='*40)
 
-opts4 = {'Product': 1, 'Suburb': "O'Connor"}
-url4 = fw.generate_url(opts4, 1)
-data4 = fw.getdata(url4)
-results4 = fw.parse(data4)
-
-
-print('='*40)
-
 print("url3: ", url3)
-print("url4: ", url4)
 
 print("api2: ", results == results3)
-print("api1: ", results2 == results4)
 
 print('+'*40)
 print(results)
 print('+'*40)
-print(results2)
-print('+'*40)
 print(results3)
-print('+'*40)
-print(results4)

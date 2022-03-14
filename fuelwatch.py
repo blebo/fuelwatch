@@ -388,7 +388,6 @@ suburbs = [
         'Yunderup'
 ]
 
-base_url_v1 = "http://www.fuelwatch.wa.gov.au/fuelWatchRSS.cfm?"
 base_url_v2 = "http://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?"
 
 def generate_options(product, location, location_type='suburb', day='today', surrounding=False):
@@ -396,12 +395,11 @@ def generate_options(product, location, location_type='suburb', day='today', sur
     pass
 
 def generate_url(optionsdict, api=2):
-    """ Generate a URL to access FuelWatch via API version 1 or 2 (default), based on the options dict.
+    """ Generate a URL to access FuelWatch via API version 2 (default), based on the options dict.
     """
     options = urlencode(optionsdict)
-    if api == 1:
-        url = base_url_v1 + options
-    elif api == 2:
+    # FuelWatch only supports API version 2
+    if api == 2:
         url = base_url_v2 + options
     else:
         url = None
