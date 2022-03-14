@@ -31,7 +31,9 @@ product = {
     4: "Diesel",
     5: "LPG",
     6: "98 RON",
-    7: "B20 Diesel"
+    7: "B20 Diesel",
+    10: "E85",
+    11: "Brand diesel",
 }
 
 region = {
