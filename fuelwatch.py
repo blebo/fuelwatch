@@ -91,7 +91,13 @@ region = {
     53: "Tammin",
     54: "Williams",
     55: "Wubin",
-    56: "York"
+    56: "York",
+    57: "Regans Ford",
+    58: "Meckering",
+    59: "Wundowie",
+    60: "North Bannister",
+    61: "Munglinup",
+    62: "Northam (Shire)",
 }
 
 brand = {
