@@ -12,12 +12,12 @@
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with fuelwatch.  If not, see <http://www.gnu.org/licenses/>.
+    along with fuelwatch.  If not, see <https://www.gnu.org/licenses/>.
 """
 __author__ = 'Adam Gibson'
 
 import fuelwatch as fw
-data = fw.getdata("http://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=1&Suburb=O'Connor")
+data = fw.getdata("https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=1&Suburb=O'Connor")
 results = fw.parse(data)
 
 print('='*40)

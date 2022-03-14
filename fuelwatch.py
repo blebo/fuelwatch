@@ -1,6 +1,6 @@
 """
 fuelwatch - A simple Python 3 module that parses the FuelWatch RSS feed provided by the Western Australian Government,
-which is located at <http://www.fuelwatch.wa.gov.au>.
+which is located at <https://www.fuelwatch.wa.gov.au>.
 
     Copyright (C) 2011  Adam Gibson
 
@@ -15,7 +15,7 @@ which is located at <http://www.fuelwatch.wa.gov.au>.
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 import httplib2
@@ -388,7 +388,7 @@ suburbs = [
         'Yunderup'
 ]
 
-base_url_v2 = "http://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?"
+base_url_v2 = "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?"
 
 def generate_options(product, location, location_type='suburb', day='today', surrounding=False):
     #TODO
