@@ -522,10 +522,15 @@ def generate_url(optionsdict, api=2):
         url = None
     return url
 
-def getdata(url):
+def getdata(url, use_certifi_ssl=True):
     """ Return a us-ascii text string from a given URL.
     """
-    h = httplib2.Http('.cache')
+    if use_certifi_ssl:
+        # httplib2 appears to be using an older CA bundle.
+        import certifi
+        h = httplib2.Http(".cache", ca_certs=certifi.where())
+    else:
+        h = httplib2.Http('.cache')
     response, content = h.request(url)
     #TODO - Catch Exceptions (i.e. if no internet connection).
     #decode byte-array to string, us-ascii selected as mime type text/xml
