@@ -38,3 +38,43 @@ print('+'*40)
 print(results)
 print('+'*40)
 print(results3)
+
+print('='*40)
+print('='*40)
+print('='*40)
+
+# Documentation Examples:
+example_urls = [
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=1&Suburb=Cloverdale",
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=1&Suburb=Cloverdale&Surrounding=no",
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Suburb=Clarkson",
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=2&Suburb=Mandurah",
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=4&Suburb=Mindarie&Day=tomorrow", # after 2.30pm, tomorrows prices returned.
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=5&Region=28",
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=6&Region=25&Day=tomorrow",  # after 2.30pm, tomorrows prices returned.
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=1&Suburb=Northbridge&Brand=23",
+    "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product=1&Suburb=Tuart%20Hill&Surrounding=no&Brand=3"
+]
+
+i=0
+for u in example_urls:
+    i+=1
+    print("Example", i)
+    print(fw.parse(fw.getdata(u)))
+    print('=' * 40)
+
+
+example_opts = [
+    {'Product': 1, 'Suburb': "O'Connor"},
+    {'Product': 1, 'Suburb': "Bedford"},
+    {'Product': 11, 'Suburb': "Perth"},
+    {'Product': 2, 'Suburb': "Embleton"},
+]
+
+i=0
+for o in example_opts:
+    i+=1
+    print("Example opts ", i)
+    print(fw.parse(fw.getdata(fw.generate_url(o))))
+    print('=' * 40)
+
