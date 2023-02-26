@@ -531,7 +531,7 @@ def getdata(url, use_certifi_ssl=True):
         h = httplib2.Http(".cache", ca_certs=certifi.where())
     else:
         h = httplib2.Http('.cache')
-    response, content = h.request(url)
+    response, content = h.request(url, headers={'User-Agent': 'fuelwatch.py'})
     #TODO - Catch Exceptions (i.e. if no internet connection).
     #decode byte-array to string, us-ascii selected as mime type text/xml
     datastring = content.decode("us-ascii")
